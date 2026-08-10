@@ -24,7 +24,8 @@ export default function Experience() {
             src="/images/food/cag-doner-slicing.jpg"
             alt="Ustanın eliyle odun ateşinde pişen cağ dönerden dilim alınması"
             className="h-full w-full scale-110 object-cover"
-            loading="lazy"
+            loading="eager"
+            decoding="async"
           />
         </motion.div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(12,9,6,0.3),rgba(12,9,6,0.85))]" />
@@ -50,7 +51,8 @@ export default function Experience() {
               src="/images/food/cag-doner.jpg"
               alt="Odun ateşi üzerinde dönen cağ döner"
               className="aspect-[4/5] w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
-              loading="lazy"
+              loading="eager"
+              decoding="async"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-coal/60 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6">

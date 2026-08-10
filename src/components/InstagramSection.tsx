@@ -17,7 +17,8 @@ function InstagramTile({ g, index }: { g: (typeof GALLERY)[number]; index: numbe
         <img
           src={src}
           alt={g.alt}
-          loading="lazy"
+          loading="eager"
+          decoding="async"
           className="aspect-square w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
       </a>

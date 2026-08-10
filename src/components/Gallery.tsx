@@ -28,7 +28,8 @@ function GalleryItem({
         <img
           src={src}
           alt={g.alt}
-          loading="lazy"
+          loading="eager"
+          decoding="async"
           className={`w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${index % 3 === 1 ? 'aspect-square md:aspect-[3/4]' : 'aspect-square'}`}
         />
         <span className="absolute inset-0 bg-gradient-to-t from-coal/70 via-transparent to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100" />

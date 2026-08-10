@@ -2,11 +2,16 @@
 
 > Güncelleme: 2026-08-10 (revizyon)
 >
-> **ÖNEMLİ:** Instagram hesabı (`@6parmakcagdoner`) bu geliştirme ortamından
-> **indirilemedi** (Instagram oturum duvarı + 429 rate-limit; imginn/picuki 403;
-> dumpa.st DNS; jina.ai anahtar istiyor). Bu nedenle **sahte/uyduk medya
-> kullanılmadı.** Aşağıdaki `public/images/food/` görselleri **stock placeholder**'dır
-> (Pexels), 6 Parmak'a ait değildir.
+> **MEDYA KAYNAK POLİTİKASI (kritik):**
+> - **TASARIM REFERANSI:** `https://www.instagram.com/p/DaINkBBNC4y/` →
+>   **sadece tasarım/anlayış referansı.** Bu kaynaktan **hiçbir fotoğraf/video
+>   medya olarak kullanılmadı** (denetim: projede 0 iz, orijinal HTML dahil).
+> - **GERÇEK MEDYA:** `https://www.instagram.com/6parmakcagdoner/` →
+>   fotoğraf/video yalnızca bu hesaptan alınır. Şu an bu ortamdan **indirilemedi**
+>   (denetim: 0 gerçek fotoğraf, 0 gerçek video).
+> - `public/images/food/*` görselleri **stock placeholder (Pexels)** — 6 Parmak'a
+>   ait **değildir**, hiçbir yerde marka medyası olarak sunulmaz; yalnızca
+>   gerçek medya gelene kadar fallback'tir.
 
 ## Tak-çalıştır mantığı
 

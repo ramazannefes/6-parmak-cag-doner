@@ -20,7 +20,8 @@ function MenuThumb({ real, index }: { real: string; index: number }) {
       src={src}
       alt=""
       aria-hidden="true"
-      loading="lazy"
+      loading="eager"
+      decoding="async"
       className="h-16 w-16 flex-none rounded-xl border border-white/10 object-cover sm:h-20 sm:w-20"
     />
   );

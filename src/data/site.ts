@@ -1,3 +1,22 @@
+// ============================================================
+// MEDYA KAYNAK POLİTİKASI (DEĞİŞTİRME)
+// ------------------------------------------------------------
+// TASARIM REFERANSI: https://www.instagram.com/p/DaINkBBNC4y/
+//   → SADECE tasarım/anlayış referansıdır. Bu kaynaktan HİÇBİR
+//     fotoğraf/video projeye medya olarak eklenmez.
+//
+// GERÇEK MEDYA KAYNAĞI: https://www.instagram.com/6parmakcagdoner/
+//   → Fotoğraf/video/Reel YALNIZCA bu hesaptan alınır.
+//
+// ŞU ANDAKİ DURUM: 6 Parmak medyası bu geliştirme ortamından
+// indirilemedi. Aşağıdaki `public/images/food/*` görselleri STOCK
+// PLACEHOLDER'dır (Pexels) — 6 Parmak'a ait değildir ve hiçbir
+// yerde marka medyası olarak sunulmaz. Gerçek dosyalar
+// `public/images/instagram/` ve `public/videos/instagram/`
+// yollarına bırakıldığında site otomatik olarak gerçek medyaya
+// geçer (src/lib/media.ts).
+// ============================================================
+
 export const SITE = {
   name: '6 Parmak Cağ Döner',
   shortName: '6 PARMAK',

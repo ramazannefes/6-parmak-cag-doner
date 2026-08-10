@@ -111,7 +111,8 @@ export default function Hero({ started }: { started: boolean }) {
             <img
               src={heroPhoto}
               alt="6 Parmak Cağ Döner — gerçek ürün görseli"
-              loading="lazy"
+              loading="eager"
+              decoding="async"
               className="aspect-[4/5] w-full rounded-2xl border border-white/10 object-cover"
             />
           ) : (
