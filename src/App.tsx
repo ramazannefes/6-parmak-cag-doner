@@ -11,6 +11,7 @@ import MenuSection from './components/MenuSection';
 import Navbar from './components/Navbar';
 import ReservationModal from './components/ReservationModal';
 import Story from './components/Story';
+import VideoSection from './components/VideoSection';
 import { ModalContext } from './context/ModalContext';
 
 function ScrollProgress() {
@@ -18,7 +19,7 @@ function ScrollProgress() {
   return (
     <motion.div
       style={{ scaleX: scrollYProgress }}
-      className="fixed inset-x-0 top-0 z-[1700] h-[3px] origin-left bg-flame-grad shadow-[0_0_12px_rgba(255,106,0,0.8)]"
+      className="fixed inset-x-0 top-0 z-[1700] h-[2px] origin-left bg-flame-grad shadow-[0_0_8px_rgba(255,106,0,0.35)]"
       aria-hidden="true"
     />
   );
@@ -49,7 +50,7 @@ function CursorGlow() {
     const loop = () => {
       x += (tx - x) * 0.09;
       y += (ty - y) * 0.09;
-      el.style.transform = `translate(${x - 260}px, ${y - 260}px)`;
+      el.style.transform = `translate(${x - 210}px, ${y - 210}px)`;
       raf = requestAnimationFrame(loop);
     };
 
@@ -66,9 +67,9 @@ function CursorGlow() {
   return (
     <div
       ref={ref}
-      className="pointer-events-none fixed left-0 top-0 z-[1] h-[520px] w-[520px] rounded-full opacity-0 mix-blend-screen"
+      className="pointer-events-none fixed left-0 top-0 z-[1] h-[420px] w-[420px] rounded-full opacity-0"
       style={{
-        background: 'radial-gradient(circle, rgba(255,106,0,0.16) 0%, rgba(255,106,0,0.05) 40%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(232,180,90,0.07) 0%, rgba(232,180,90,0.03) 40%, transparent 70%)',
         transition: 'opacity 0.4s ease',
       }}
       aria-hidden="true"
@@ -102,6 +103,7 @@ export default function App() {
           <Experience />
           <MenuSection />
           <Gallery />
+          <VideoSection />
           <InstagramSection />
           <Location />
         </main>

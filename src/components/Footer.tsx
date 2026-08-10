@@ -31,7 +31,7 @@ export default function Footer() {
               <Logo />
             </a>
             <p className="mt-6 max-w-xs text-[14px] leading-relaxed text-muted">
-              Odun ateşinde pişen gerçek cağ döner. Bursa Osmangazi’de yarım asırlık ustalık, her dilimde.
+              Odun ateşinde pişen gerçek cağ döner. Bursa Osmangazi’de her dilimde ustanın eli.
             </p>
             <a
               href={SITE.instagram}
@@ -98,19 +98,16 @@ export default function Footer() {
                 <b className="font-semibold text-cream2">12:00 – 19:00</b>
               </p>
             </div>
-            <div className="mt-5 rounded-2xl border border-white/10 bg-card p-4">
-              <p className="font-display text-[26px] font-semibold text-gold">4.9 ★</p>
-              <p className="mt-1 text-[12px] text-muted">3.888 Google yorumu</p>
+            <div className="mt-5">
+              <p className="font-display text-[28px] font-medium leading-none text-cream">4.9 ★</p>
+              <p className="mt-2 text-[12px] text-muted">3.888 Google yorumu</p>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-7 text-[12.5px] text-muted sm:flex-row">
           <p>© 2026 6 Parmak Cağ Döner — Tüm hakları saklıdır.</p>
-          <p className="flex items-center gap-2">
-            Bursa’nın ustalık lezzeti
-            <span className="flame-text font-semibold">🔥</span>
-          </p>
+          <p>Bursa’nın ustalık lezzeti</p>
         </div>
       </div>
 

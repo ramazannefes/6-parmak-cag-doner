@@ -2,7 +2,7 @@ import { Award, Flame, Timer, Utensils } from 'lucide-react';
 import Reveal from './Reveal';
 
 const STEPS = [
-  { icon: Award, title: 'Usta Eli', text: 'Nesilden nesile aktarılan, ateşi ve eti tanıyan usta eller.' },
+  { icon: Award, title: 'Usta Eli', text: 'Ateşi ve eti tanıyan usta eller; her dilimde iz bırakır.' },
   { icon: Flame, title: 'Odun Ateşi', text: 'Meşe odununun koru; lezzete o kokuyu, ete o rengi verir.' },
   { icon: Timer, title: 'Sabır', text: 'Cağ döner acele etmez. Yatık şişte, kendi hızında pişer.' },
   { icon: Utensils, title: 'Sofranızda', text: 'Sıcak sıcak, tam zamanında. Afiyet olsun.' },
@@ -10,51 +10,49 @@ const STEPS = [
 
 export default function Story() {
   return (
-    <section id="hikaye" className="relative bg-coal2 py-24 lg:py-32">
+    <section id="hikaye" className="bg-coal2 py-28 lg:py-40">
       <div className="container-x">
-        <div className="text-center">
-          <Reveal>
-            <span className="kicker kicker--center justify-center">Hikayemiz</span>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="mt-5 font-display text-[clamp(2.2rem,5vw,3.4rem)] text-cream">
-              Ateşten Sofraya <span className="flame-text italic">Dört Adım</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-muted">
-              Bir dilim cağ dönerin sofraya ulaşana kadar geçtiği yol; ustalık, ateş ve sabrın buluşmasıdır.
-            </p>
-          </Reveal>
-        </div>
-
-        <div className="relative mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div aria-hidden="true" className="absolute left-[10%] right-[10%] top-[46px] hidden h-0.5 rounded bg-flame-grad opacity-40 lg:block">
-            <div className="absolute -top-[2px] left-0 h-[6px] w-[70px] animate-pulse rounded-full bg-flame-grad shadow-[0_0_18px_rgba(255,106,0,0.8)]" style={{ animation: 'flameline 4s ease-in-out infinite' }} />
+        <div className="grid gap-16 lg:grid-cols-[0.9fr_1.6fr] lg:gap-24">
+          <div className="lg:sticky lg:top-36 lg:self-start">
+            <Reveal>
+              <span className="kicker">Hikayemiz</span>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.2rem)] leading-tight text-cream">
+                Ateşten Sofraya
+                <br />
+                <span className="italic text-[#e8b45a]">Dört Adım</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-6 max-w-sm text-[15px] leading-[1.9] text-muted">
+                Bir dilim cağ dönerin sofraya ulaşana kadar geçtiği yol; ustalık, ateş ve sabrın buluşmasıdır.
+              </p>
+            </Reveal>
           </div>
 
-          {STEPS.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.12} className="relative text-center">
-              <div className="relative mx-auto mb-6 grid h-[88px] w-[88px] place-items-center rounded-full border border-flame2/35 bg-card shadow-[0_0_0_8px_rgba(255,106,0,0.06)]">
-                <s.icon className="h-8 w-8 text-flame2" strokeWidth={1.7} />
-                <span className="absolute -right-1.5 -top-1.5 grid h-8 w-8 place-items-center rounded-full bg-flame-grad text-[12px] font-extrabold text-[#0c0906] shadow-flame">
-                  0{i + 1}
-                </span>
-              </div>
-              <h3 className="font-display text-xl text-cream">{s.title}</h3>
-              <p className="mx-auto mt-2.5 max-w-[240px] text-[13.5px] leading-relaxed text-muted">{s.text}</p>
-            </Reveal>
-          ))}
+          <ol className="divide-y divide-white/10">
+            {STEPS.map((s, i) => (
+              <li key={s.title}>
+                <Reveal delay={i * 0.08}>
+                  <div className="group flex flex-col gap-5 py-10 first:pt-0 sm:flex-row sm:items-start sm:gap-9">
+                    <span className="font-display text-sm italic text-muted">0{i + 1}</span>
+                    <span className="grid h-12 w-12 flex-none place-items-center rounded-full border border-white/15 text-[#e8b45a]">
+                      <s.icon className="h-5 w-5" strokeWidth={1.6} />
+                    </span>
+                    <div>
+                      <h3 className="font-display text-2xl text-cream transition-colors duration-300 group-hover:text-[#e8b45a]">
+                        {s.title}
+                      </h3>
+                      <p className="mt-2 max-w-md text-[14.5px] leading-relaxed text-muted">{s.text}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
-
-      <style>{`
-        @keyframes flameline {
-          0% { left: 0; opacity: 0.5; }
-          50% { opacity: 1; }
-          100% { left: calc(100% - 70px); opacity: 0.5; }
-        }
-      `}</style>
     </section>
   );
 }

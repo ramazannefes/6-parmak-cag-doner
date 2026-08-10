@@ -147,7 +147,7 @@ export default function Navbar() {
             >
               <X className="h-6 w-6" />
             </button>
-            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.14),transparent_62%)]" />
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.08),transparent_62%)]" />
             <nav className="relative flex flex-col items-center gap-1" aria-label="Mobil menü">
               {NAV_LINKS.map((l, i) => (
                 <motion.a

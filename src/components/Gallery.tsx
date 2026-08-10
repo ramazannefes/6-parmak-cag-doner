@@ -39,7 +39,7 @@ export default function Gallery() {
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="mt-5 font-display text-[clamp(2.2rem,5vw,3.4rem)] text-cream">
-              Ateşin Başından <span className="flame-text italic">Kareler</span>
+              Ateşin Başından <span className="italic text-[#e8b45a]">Kareler</span>
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
@@ -49,28 +49,28 @@ export default function Gallery() {
           </Reveal>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
+        <div className="mt-16 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:gap-8">
           {GALLERY.map((g, i) => (
             <Reveal
               key={g.src}
-              delay={(i % 3) * 0.1}
+              delay={(i % 3) * 0.08}
               className={i === 0 || i === 3 ? 'md:col-span-1' : undefined}
             >
               <button
                 onClick={() => setIndex(i)}
-                className="group relative block w-full overflow-hidden rounded-2xl border border-white/10"
+                className="group relative block w-full overflow-hidden rounded-xl border border-white/10"
                 aria-label={`Görseli büyüt: ${g.caption}`}
               >
                 <img
                   src={g.src}
                   alt={g.alt}
                   loading="lazy"
-                  className={`w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 ${i % 3 === 1 ? 'aspect-square md:aspect-[3/4]' : 'aspect-square'}`}
+                  className={`w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${i % 3 === 1 ? 'aspect-square md:aspect-[3/4]' : 'aspect-square'}`}
                 />
-                <span className="absolute inset-0 bg-gradient-to-t from-coal/80 via-transparent to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100" />
+                <span className="absolute inset-0 bg-gradient-to-t from-coal/70 via-transparent to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100" />
                 <span className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2 text-left opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100" style={{ transform: 'translateY(8px)' }}>
                   <span className="text-[12.5px] font-medium leading-snug text-cream">{g.caption}</span>
-                  <Expand className="h-4 w-4 flex-none text-flame2" />
+                  <Expand className="h-4 w-4 flex-none text-[#e8b45a]" />
                 </span>
               </button>
             </Reveal>

@@ -7,96 +7,90 @@ export default function Location() {
   const { open, today } = useOpenStatus();
 
   return (
-    <section id="iletisim" className="relative bg-coal py-24 lg:py-32">
+    <section id="iletisim" className="relative bg-coal py-28 lg:py-40">
       <div className="container-x">
         <div className="text-center">
           <Reveal>
             <span className="kicker kicker--center justify-center">Konum & Saatler</span>
           </Reveal>
           <Reveal delay={0.1}>
-            <h2 className="mt-5 font-display text-[clamp(2.2rem,5vw,3.4rem)] text-cream">
-              Bize <span className="flame-text italic">Ulaşın</span>
+            <h2 className="mt-6 font-display text-[clamp(2.2rem,5vw,3.2rem)] text-cream">
+              Bize <span className="italic text-[#e8b45a]">Ulaşın</span>
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-muted">
+            <p className="mx-auto mt-5 max-w-xl text-[15px] leading-[1.9] text-muted">
               Bursa Osmangazi’nin kalbinde, Kuruçeşme’deyiz. Yol tarifini alın, ateş sizi bekliyor.
             </p>
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
-          {/* info card */}
+        <div className="mx-auto mt-16 grid max-w-5xl gap-16 lg:grid-cols-2 lg:gap-24">
+          {/* info */}
           <Reveal>
-            <div className="glass h-full rounded-3xl p-7 sm:p-9">
-              <div className="flex items-start gap-4 border-b border-white/10 pb-6">
-                <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-flame-grad-soft text-flame2">
-                  <MapPin className="h-5 w-5" />
-                </span>
+            <div className="divide-y divide-white/10">
+              <div className="flex items-start gap-5 pb-8">
+                <MapPin className="mt-1 h-5 w-5 flex-none text-[#e8b45a]" strokeWidth={1.6} />
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-flame2">Adres</p>
+                  <p className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-muted">Adres</p>
                   <a
                     href={SITE.mapsSearch}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-1 block text-[15px] font-medium text-cream transition-colors hover:text-flame2"
+                    className="mt-1.5 block text-[15px] font-medium leading-relaxed text-cream transition-colors hover:text-[#e8b45a]"
                   >
                     {SITE.address}
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 border-b border-white/10 py-6">
-                <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-flame-grad-soft text-flame2">
-                  <Phone className="h-5 w-5" />
-                </span>
+              <div className="flex items-start gap-5 py-8">
+                <Phone className="mt-1 h-5 w-5 flex-none text-[#e8b45a]" strokeWidth={1.6} />
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-flame2">Telefon</p>
-                  <a href={`tel:${SITE.phoneTel}`} className="mt-1 block text-[15px] font-semibold text-cream transition-colors hover:text-flame2">
+                  <p className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-muted">Telefon</p>
+                  <a href={`tel:${SITE.phoneTel}`} className="mt-1.5 block text-[15px] font-semibold text-cream transition-colors hover:text-[#e8b45a]">
                     {SITE.phoneDisplay}
                   </a>
                   <p className="mt-0.5 text-[12.5px] text-muted">Arayın, döneriniz ateşte sizi beklesin.</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 border-b border-white/10 py-6">
-                <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-flame-grad-soft text-flame2">
-                  <Clock className="h-5 w-5" />
-                </span>
-                <div className="w-full">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-flame2">Çalışma Saatleri</p>
-                    <span
-                      className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${
-                        open ? 'bg-[#7ed957]/15 text-[#7ed957]' : 'bg-[#ff5252]/15 text-[#ff5252]'
-                      }`}
-                    >
-                      {open ? 'Açık — Kapanış 20:00' : 'Kapalı'}
-                    </span>
-                  </div>
-                  <ul className="mt-4 grid grid-cols-2 gap-2">
-                    {HOURS.map((h, i) => (
-                      <li
-                        key={h.day}
-                        className={`flex items-center justify-between rounded-xl border px-3 py-2 text-[12.5px] ${
-                          i === today ? 'border-flame/60 bg-flame-grad-soft' : 'border-white/10 bg-white/5'
+              <div className="py-8">
+                <div className="flex items-center gap-5">
+                  <Clock className="mt-1 h-5 w-5 flex-none text-[#e8b45a]" strokeWidth={1.6} />
+                  <div className="w-full">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <p className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-muted">Çalışma Saatleri</p>
+                      <span
+                        className={`text-[11px] font-bold uppercase tracking-[0.18em] ${
+                          open ? 'text-[#8fbf6a]' : 'text-[#e07060]'
                         }`}
                       >
-                        <span className={i === today ? 'font-semibold text-cream' : 'text-muted'}>{h.day}</span>
-                        <b className={`font-semibold ${i === today ? 'text-flame2' : 'text-cream2'}`}>{h.time}</b>
-                      </li>
-                    ))}
-                  </ul>
+                        {open ? 'Açık — Kapanış 20:00' : 'Kapalı'}
+                      </span>
+                    </div>
+                    <ul className="mt-5">
+                      {HOURS.map((h, i) => (
+                        <li
+                          key={h.day}
+                          className={`flex items-center justify-between border-t border-white/10 py-2.5 text-[13px] last:border-b ${
+                            i === today ? 'text-cream' : 'text-muted'
+                          }`}
+                        >
+                          <span className={i === today ? 'font-semibold' : undefined}>{h.day}</span>
+                          <b className={`font-semibold ${i === today ? 'text-[#e8b45a]' : 'text-cream2/70'}`}>{h.time}</b>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 pt-6">
-                <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-flame-grad-soft text-flame2">
-                  <Banknote className="h-5 w-5" />
-                </span>
+              <div className="flex items-start gap-5 pt-8">
+                <Banknote className="mt-1 h-5 w-5 flex-none text-[#e8b45a]" strokeWidth={1.6} />
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-flame2">Kişi Başı</p>
-                  <p className="mt-1 text-[15px] font-medium text-cream">{SITE.priceRange}</p>
+                  <p className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-muted">Kişi Başı</p>
+                  <p className="mt-1.5 text-[15px] font-medium text-cream">{SITE.priceRange}</p>
                   <p className="mt-0.5 text-[12.5px] text-muted">Lezzete göre kıyaslanamaz değer.</p>
                 </div>
               </div>
@@ -105,16 +99,16 @@ export default function Location() {
 
           {/* map */}
           <Reveal delay={0.15}>
-            <div className="relative h-full min-h-[420px] overflow-hidden rounded-3xl border border-white/10 bg-card">
+            <div className="relative h-full min-h-[420px] overflow-hidden rounded-2xl border border-white/10 bg-card">
               <iframe
                 title="6 Parmak Cağ Döner harita konumu"
                 src={SITE.mapsEmbed}
-                className="h-full min-h-[420px] w-full border-0 opacity-90 grayscale-[0.3]"
+                className="h-full min-h-[420px] w-full border-0 opacity-90"
                 loading="lazy"
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
               />
-              <div className="absolute left-4 top-4 flex flex-col gap-2.5">
+              <div className="absolute left-4 top-4">
                 <a
                   href={SITE.mapsDirections}
                   target="_blank"
@@ -125,7 +119,7 @@ export default function Location() {
                   Yol Tarifi Al
                 </a>
               </div>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-coal/70 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-coal/60 to-transparent" />
             </div>
           </Reveal>
         </div>

@@ -151,7 +151,7 @@ export default function Rotisserie() {
         <div
           key={i}
           aria-hidden="true"
-          className="pointer-events-none absolute animate-smoke-rise rounded-full bg-gradient-to-b from-white/30 to-white/0"
+          className="pointer-events-none absolute animate-smoke-rise rounded-full bg-gradient-to-b from-white/20 to-white/0"
           style={{
             left: s.left,
             top: s.top,

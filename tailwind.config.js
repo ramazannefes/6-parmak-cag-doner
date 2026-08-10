@@ -21,13 +21,13 @@ export default {
         body: ['Onest', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        flame: '0 12px 34px -10px rgba(255,106,0,.65)',
-        'flame-lg': '0 24px 60px -18px rgba(255,106,0,.55)',
-        card: '0 30px 80px -24px rgba(0,0,0,.8)',
+        flame: '0 8px 22px -12px rgba(255,106,0,.45)',
+        'flame-lg': '0 16px 40px -20px rgba(255,106,0,.32)',
+        card: '0 24px 60px -28px rgba(0,0,0,.7)',
       },
       backgroundImage: {
         'flame-grad': 'linear-gradient(135deg,#ff6a00 0%,#ffb400 100%)',
-        'flame-grad-soft': 'linear-gradient(135deg,rgba(255,106,0,.18),rgba(255,180,0,.08))',
+        'flame-grad-soft': 'linear-gradient(135deg,rgba(255,106,0,.10),rgba(255,180,0,.05))',
         'flame-text': 'linear-gradient(120deg,#ff6a00,#ffb400)',
       },
       keyframes: {
