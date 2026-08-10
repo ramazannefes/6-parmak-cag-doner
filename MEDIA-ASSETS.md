@@ -37,12 +37,13 @@ kontrolü yapar). Aşağıdaki dosyaları belirtilen klasörlere bırakmanız ye
 
 | Dosya | Kullanıldığı yer |
 | --- | --- |
-| `hero-reel.mp4` | Video bölümü (öncelikli) |
-| `cooking.mp4` | Video bölümü (yedek) |
-| `hero-doner.mp4` | Video bölümü (yedek, kök videos klasöründe) |
+| `hero-doner.mp4` | **MEVCUT ✓** — Hero görseli (canlı, player'sız) + Video bölümü (yedek kaynak) |
+| `hero-reel.mp4` | Video bölümü (öncelikli, henüz yok) |
+| `cooking.mp4` | Video bölümü (yedek, henüz yok) |
 
-Video bölümü (`src/components/VideoSection.tsx`) bu üç dosyadan ilk bulduğunu oynatır.
-Hiçbiri yoksa bölüm sayfada **görünmez** ve hata üretmez.
+Video bölümü (`src/components/VideoSection.tsx`) bu dosyalardan ilk bulduğunu oynatır.
+Hiçbiri yoksa bölüm sayfada **görünmez** ve hata üretmez. Hero artık
+`public/videos/hero-doner.mp4` dosyasını canlı görsel olarak kullanır.
 
 ## 2. Mevcut placeholder eşlemesi (şu an görünen)
 
@@ -62,7 +63,8 @@ Hiçbiri yoksa bölüm sayfada **görünmez** ve hata üretmez.
 - `public/images/food/*.png` (2 adet, Gemini_Generated_Image_...) → **kullanıcının eklediği görseller (PNG)**
 - `public/images/food/*.jpg` (4 adet: cag-doner-slicing, meze, skewers, warm-service) → **stock placeholder (Pexels) — 6 Parmak'a ait değil**
 - `public/images/instagram/*` → boş (gerçek marka görseli bekliyor)
-- `public/videos/instagram/*`, `public/videos/hero-doner.mp4` → boş (gerçek video bekliyor)
+- `public/videos/hero-doner.mp4` → **MEVCUT ✓** (kullanıcının eklediği gerçek 6 Parmak videosu — Hero'da)
+- `public/videos/instagram/*` → boş (ek gerçek reel bekliyor)
 
 ## 4. Not
 

@@ -1,9 +1,6 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, Navigation, Phone, Star } from 'lucide-react';
-import { MEDIA_SLOTS, SITE } from '../data/site';
-import { useMedia } from '../lib/media';
-import Embers from './Embers';
-import Rotisserie from './Rotisserie';
+import { SITE } from '../data/site';
 
 const container = {
   hidden: {},
@@ -22,9 +19,10 @@ const STATS = [
   { v: '₺200–400', l: 'Kişi Başı' },
 ];
 
+const HERO_VIDEO = '/videos/hero-doner.mp4';
+
 export default function Hero({ started }: { started: boolean }) {
   const reduce = useReducedMotion();
-  const heroPhoto = useMedia([MEDIA_SLOTS.hero], '');
   const { scrollY } = useScroll();
   const parallaxY = useTransform(scrollY, [0, 800], [0, 120]);
   const fade = useTransform(scrollY, [0, 620], [1, 0]);
@@ -99,28 +97,36 @@ export default function Hero({ started }: { started: boolean }) {
           </motion.div>
         </motion.div>
 
-        {/* rotisserie */}
+        {/* gerçek cağ döner videosu — canlı görsel, player değil */}
         <motion.div
-          className="relative mx-auto w-full max-w-[400px]"
+          className="relative mx-auto w-full max-w-[440px]"
           style={reduce ? undefined : { y: rotY }}
-          initial={reduce ? undefined : { opacity: 0, scale: 0.94 }}
+          initial={reduce ? undefined : { opacity: 0, scale: 0.96 }}
           animate={started ? { opacity: 1, scale: 1 } : undefined}
           transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
         >
-          {heroPhoto ? (
-            <img
-              src={heroPhoto}
-              alt="6 Parmak Cağ Döner — gerçek ürün görseli"
-              loading="eager"
-              decoding="async"
-              className="aspect-[4/5] w-full rounded-2xl border border-white/10 object-cover"
+          {/* hafif sıcak hale — çok yumuşak */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[radial-gradient(58%_58%_at_50%_42%,rgba(255,106,0,0.09),transparent_72%)]"
+          />
+          <div className="relative overflow-hidden rounded-[1.75rem] bg-coal2/60 shadow-card">
+            <video
+              src={HERO_VIDEO}
+              className="aspect-[4/5] w-full object-cover object-center"
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls={false}
+              disablePictureInPicture
+              preload="auto"
             />
-          ) : (
-            <>
-              <Rotisserie />
-              <Embers density={0.8} className="!inset-x-8 !bottom-0 !top-auto h-[40%]" />
-            </>
-          )}
+            {/* hafif vignette — döneri öne çıkarır, ağır efekt yok */}
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_120%_at_50%_45%,transparent_52%,rgba(12,12,12,0.42)_100%)]" />
+            {/* alt geçiş — arka planla bütünleşme */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-coal/80 to-transparent" />
+          </div>
         </motion.div>
       </div>
 
