@@ -9,9 +9,10 @@
 > - **GERÇEK MEDYA:** `https://www.instagram.com/6parmakcagdoner/` →
 >   fotoğraf/video yalnızca bu hesaptan alınır. Şu an bu ortamdan **indirilemedi**
 >   (denetim: 0 gerçek fotoğraf, 0 gerçek video).
-> - `public/images/food/*` görselleri **stock placeholder (Pexels)** — 6 Parmak'a
->   ait **değildir**, hiçbir yerde marka medyası olarak sunulmaz; yalnızca
->   gerçek medya gelene kadar fallback'tir.
+> - `public/images/food/*.jpg` (4 adet) görselleri **stock placeholder (Pexels)**
+>   — 6 Parmak'a ait **değildir**, marka medyası olarak sunulmaz; gerçek medya
+>   gelene kadar fallback'tir. `public/images/food/*.png` (2 adet, Gemini_Generated_Image_...)
+>   ise kullanıcının eklediği gerçek görsellerdir.
 
 ## Tak-çalıştır mantığı
 
@@ -47,18 +48,19 @@ Hiçbiri yoksa bölüm sayfada **görünmez** ve hata üretmez.
 
 | Site alanı | Dosya | Gerçek içerikle değiştirilecek |
 | --- | --- | --- |
-| Galeri/IG/Video poster (1) | `public/images/food/cag-doner.jpg` | `instagram/gallery-01.jpg` |
+| Galeri/IG/Video poster (1) | `public/images/food/Gemini_Generated_Image_u4e2nju4e2nju4e2.png` | `instagram/gallery-01.jpg` |
 | Galeri/IG (2) | `public/images/food/cag-doner-slicing.jpg` | `instagram/gallery-02.jpg` |
 | Galeri/IG (3) | `public/images/food/skewers.jpg` | `instagram/gallery-03.jpg` |
-| Galeri/IG (4) | `public/images/food/service.jpg` | `instagram/gallery-04.jpg` |
+| Galeri/IG (4) | `public/images/food/Gemini_Generated_Image_x47wopx47wopx47w.png` | `instagram/gallery-04.jpg` |
 | Galeri/IG (5) | `public/images/food/warm-service.jpg` | `instagram/gallery-05.jpg` |
 | Galeri/IG (6) | `public/images/food/meze.jpg` | `instagram/gallery-06.jpg` |
 | Menü (kategori fotoğrafları) | `public/images/food/*` | `instagram/menu-*.jpg` |
-| Experience band + OG/twitter | `public/images/food/cag-doner-slicing.jpg`, `cag-doner.jpg` | gerçek dilimleme/döner karesi |
+| Experience band + OG/twitter | `public/images/food/cag-doner-slicing.jpg`, `Gemini_Generated_Image_u4e2nju4e2nju4e2.png` | gerçek dilimleme/döner karesi |
 
 ## 3. Kaynaklar
 
-- `public/images/food/*` → **stock placeholder (Pexels) — 6 Parmak'a ait değil**
+- `public/images/food/*.png` (2 adet, Gemini_Generated_Image_...) → **kullanıcının eklediği görseller (PNG)**
+- `public/images/food/*.jpg` (4 adet: cag-doner-slicing, meze, skewers, warm-service) → **stock placeholder (Pexels) — 6 Parmak'a ait değil**
 - `public/images/instagram/*` → boş (gerçek marka görseli bekliyor)
 - `public/videos/instagram/*`, `public/videos/hero-doner.mp4` → boş (gerçek video bekliyor)
 

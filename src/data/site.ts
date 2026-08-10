@@ -112,10 +112,10 @@ export const MENU: MenuCategory[] = [
 ] as const;
 
 export const GALLERY = [
-  { src: '/images/food/cag-doner.jpg', real: '/images/instagram/gallery-01.jpg', alt: 'Odun ateşinde dönen cağ döner', caption: 'Odun ateşinde pişen lezzet' },
+  { src: '/images/food/Gemini_Generated_Image_u4e2nju4e2nju4e2.png', real: '/images/instagram/gallery-01.jpg', alt: 'Odun ateşinde dönen cağ döner', caption: 'Odun ateşinde pişen lezzet' },
   { src: '/images/food/cag-doner-slicing.jpg', real: '/images/instagram/gallery-02.jpg', alt: 'Cağ döner ustanın eliyle dilimlenirken', caption: 'Ustanın elinden, tam zamanında' },
   { src: '/images/food/skewers.jpg', real: '/images/instagram/gallery-03.jpg', alt: 'Köz üzerinde ızgara şişler', caption: 'Köz üzerinde ızgara' },
-  { src: '/images/food/service.jpg', real: '/images/instagram/gallery-04.jpg', alt: 'Servise hazır ızgara tabağı', caption: 'Sofranız için atölyede hazırlık' },
+  { src: '/images/food/Gemini_Generated_Image_x47wopx47wopx47w.png', real: '/images/instagram/gallery-04.jpg', alt: 'Servise hazır ızgara tabağı', caption: 'Sofranız için atölyede hazırlık' },
   { src: '/images/food/warm-service.jpg', real: '/images/instagram/gallery-05.jpg', alt: 'Sıcak servis edilen lezzetler', caption: 'Sıcak servis, güler yüz' },
   { src: '/images/food/meze.jpg', real: '/images/instagram/gallery-06.jpg', alt: 'Taze hazırlanmış mezeler', caption: 'Mezeler hazır, tabaklar bekliyor' },
 ] as const;
@@ -137,7 +137,7 @@ export const MEDIA_SLOTS = {
 // Gerçek marka videosu yoksa VideoSection otomatik olarak görünmez.
 // public/videos/ altına gerçek video bırakın — bölüm otomatik aktifleşir.
 export const VIDEOS = [
-  { src: '/videos/hero-doner.mp4', poster: '/images/food/cag-doner.jpg', title: 'Ateşin Başından' },
+  { src: '/videos/hero-doner.mp4', poster: '/images/food/Gemini_Generated_Image_u4e2nju4e2nju4e2.png', title: 'Ateşin Başından' },
 ] as const;
 
 export const NAV_LINKS = [

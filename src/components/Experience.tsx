@@ -48,7 +48,7 @@ export default function Experience() {
         <Reveal className="order-2 lg:order-1">
           <div className="group relative overflow-hidden rounded-2xl">
             <img
-              src="/images/food/cag-doner.jpg"
+              src="/images/food/Gemini_Generated_Image_u4e2nju4e2nju4e2.png"
               alt="Odun ateşi üzerinde dönen cağ döner"
               className="aspect-[4/5] w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
               loading="eager"
