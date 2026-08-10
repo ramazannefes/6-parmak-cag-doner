@@ -1,60 +1,64 @@
 # 6 Parmak Cağ Döner — Medya Envanteri ve Eksik Asset Listesi
 
-> Güncelleme tarihi: 2026-08-10
+> Güncelleme: 2026-08-10 (revizyon)
 >
-> **ÖNEMLİ:** Instagram hesabı (`@6parmakcagdoner`) bu ortamdan teknik olarak
-> erişilemedi (oturum duvarı, aynalar 403). Aşağıdaki görseller **6 Parmak'a ait
-> DEĞİLDİR** — bunlar geçici **stock placeholder**'lardır (Pexels). Uydurma
-> içerik kullanılmamıştır. Gerçek marka medyası gelince aşağıdaki dosyaların
-> üzerine yazmanız yeterlidir; kod değişmez.
+> **ÖNEMLİ:** Instagram hesabı (`@6parmakcagdoner`) bu geliştirme ortamından
+> **indirilemedi** (Instagram oturum duvarı + 429 rate-limit; imginn/picuki 403;
+> dumpa.st DNS; jina.ai anahtar istiyor). Bu nedenle **sahte/uyduk medya
+> kullanılmadı.** Aşağıdaki `public/images/food/` görselleri **stock placeholder**'dır
+> (Pexels), 6 Parmak'a ait değildir.
 
-## 1. Mevcut Görsel Eşlemesi (placeholder)
+## Tak-çalıştır mantığı
 
-| Site alanı | Dosya | Gerçek içerik olması gereken |
+Site artık **gerçek dosya öncelikli** çalışır: `real` yuvasındaki dosya mevcutsa
+placeholder yerine onu gösterir (kod değişikliği gerekmez, `src/lib/media.ts` HEAD
+kontrolü yapar). Aşağıdaki dosyaları belirtilen klasörlere bırakmanız yeterli.
+
+## 1. EKSİK MEDYA — bırakılacak dosyalar
+
+### Fotoğraflar (`public/images/instagram/`)
+
+| Dosya | Kullanıldığı yer |
+| --- | --- |
+| `hero.jpg` | Hero: gerçek ürün görseli (yoksa procedural döner gösterilir) |
+| `gallery-01.jpg` … `gallery-06.jpg` | Galeri + Instagram bölümü (6 kare) |
+| `menu-doner.jpg` | Menü — Döner & Izgara kategorisi fotoğrafı |
+| `menu-kebap.jpg` | Menü — Kebap kategorisi fotoğrafı |
+| `menu-meze.jpg` | Menü — Meze kategorisi fotoğrafı |
+| `menu-tatli.jpg` | Menü — Tatlı & İçecek kategorisi fotoğrafı |
+
+### Videolar (`public/videos/instagram/` veya `public/videos/`)
+
+| Dosya | Kullanıldığı yer |
+| --- | --- |
+| `hero-reel.mp4` | Video bölümü (öncelikli) |
+| `cooking.mp4` | Video bölümü (yedek) |
+| `hero-doner.mp4` | Video bölümü (yedek, kök videos klasöründe) |
+
+Video bölümü (`src/components/VideoSection.tsx`) bu üç dosyadan ilk bulduğunu oynatır.
+Hiçbiri yoksa bölüm sayfada **görünmez** ve hata üretmez.
+
+## 2. Mevcut placeholder eşlemesi (şu an görünen)
+
+| Site alanı | Dosya | Gerçek içerikle değiştirilecek |
 | --- | --- | --- |
-| Galeri (1), OG/twitter image, Experience sağ görsel, Video poster | `public/images/food/cag-doner.jpg` | Gerçek cağ döner yakın plan |
-| Experience sinematik bant, Galeri (2) | `public/images/food/cag-doner-slicing.jpg` | Ustanın eliyle döner dilimleme |
-| Galeri (3), Instagram grid | `public/images/food/skewers.jpg` | Döner şişi / közde pişme |
-| Galeri (4), Instagram grid | `public/images/food/service.jpg` | Servis tabağı |
-| Galeri (5), Instagram grid | `public/images/food/warm-service.jpg` | Mekan / servis / müşteri deneyimi |
-| Galeri (6), Instagram grid | `public/images/food/meze.jpg` | Meze / yan ürünler |
+| Galeri/IG/Video poster (1) | `public/images/food/cag-doner.jpg` | `instagram/gallery-01.jpg` |
+| Galeri/IG (2) | `public/images/food/cag-doner-slicing.jpg` | `instagram/gallery-02.jpg` |
+| Galeri/IG (3) | `public/images/food/skewers.jpg` | `instagram/gallery-03.jpg` |
+| Galeri/IG (4) | `public/images/food/service.jpg` | `instagram/gallery-04.jpg` |
+| Galeri/IG (5) | `public/images/food/warm-service.jpg` | `instagram/gallery-05.jpg` |
+| Galeri/IG (6) | `public/images/food/meze.jpg` | `instagram/gallery-06.jpg` |
+| Menü (kategori fotoğrafları) | `public/images/food/*` | `instagram/menu-*.jpg` |
+| Experience band + OG/twitter | `public/images/food/cag-doner-slicing.jpg`, `cag-doner.jpg` | gerçek dilimleme/döner karesi |
 
-Kaynak eşlemesi `src/data/site.ts` → `GALLERY` ve `VIDEOS`, görsellerin tek
-noktasından yönetilir.
+## 3. Kaynaklar
 
-## 2. EKSİK MEDYA — indirip `public/` altına bırakılmalı
-
-Aşağıdaki dosyaların hiçbiri henüz mevcut değil. Dosyaları oluşturursanız site
-otomatik olarak kullanmaya başlar (kod değişikliği gerekmez).
-
-**MISSING (fotoğraf):**
-- `public/images/food/cag-doner.jpg` → gerçek cağ döner görseli (mevcut stock yerine)
-- `public/images/food/cag-doner-slicing.jpg` → dilimleme anı
-- `public/images/food/skewers.jpg` → şiş/ateş/köz karesi
-- `public/images/food/service.jpg` → servis tabağı
-- `public/images/food/warm-service.jpg` → mekan / servis
-- `public/images/food/meze.jpg` → meze/yan ürün
-- (isteğe bağlı) `public/images/food/restaurant.jpg` → mekan içi
-- (isteğe bağlı) `public/images/brand/logo.jpg` → logo/marka görseli
-
-**MISSING (video):**
-- `public/videos/hero-doner.mp4` → dönerin piştiği/kesildiği kısa Reels benzeri
-  video (16:9 veya kare; WebM/MP4). `src/components/VideoSection.tsx` bu dosyayı
-  algılar ve sinematik video bölümünü **otomatik** gösterir. Dosya yokken bölüm
-  sayfada hiç görünmez, hata üretmez.
-
-## 3. Önerilen gerçek içerik konuları (Instagram'dan)
-
-- cağ döner / döner şişi yakın plan
-- dönerin pişmesi (ateş, köz, kor)
-- kesim / dilimleme anı
-- servis, tabak sunumu
-- mekan içi, masa, müşteri deneyimi
-- marka/logo görseli
+- `public/images/food/*` → **stock placeholder (Pexels) — 6 Parmak'a ait değil**
+- `public/images/instagram/*` → boş (gerçek marka görseli bekliyor)
+- `public/videos/instagram/*`, `public/videos/hero-doner.mp4` → boş (gerçek video bekliyor)
 
 ## 4. Not
 
-- Görseller **stock/placeholder** olduğu sürece hiçbir yerde "6 Parmak'a aittir"
-  iddiası yoktur; alt metinler görseldeki içeriği tanımlar.
-- Gerçek marka görselleri geldiğinde bu dosya güncellenip "placeholder" ibaresi
-  kaldırılmalıdır.
+- Hiçbir yerde placeholder görsel "6 Parmak'a aittir" diye sunulmuyor; alt metinler
+  görseldeki içeriği tanımlar.
+- Gerçek medya eklendiğinde bu dosya güncellenip placeholder ibareleri kaldırılmalıdır.

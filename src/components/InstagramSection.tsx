@@ -1,6 +1,29 @@
 import { Instagram, ExternalLink } from 'lucide-react';
 import { GALLERY, SITE } from '../data/site';
+import { useMedia } from '../lib/media';
 import Reveal from './Reveal';
+
+function InstagramTile({ g, index }: { g: (typeof GALLERY)[number]; index: number }) {
+  const src = useMedia([g.real], g.src);
+  return (
+    <Reveal delay={(index % 3) * 0.08}>
+      <a
+        href={SITE.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block overflow-hidden rounded-xl"
+        aria-label={`Instagram'da görüntüle: ${g.caption}`}
+      >
+        <img
+          src={src}
+          alt={g.alt}
+          loading="lazy"
+          className="aspect-square w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+      </a>
+    </Reveal>
+  );
+}
 
 export default function InstagramSection() {
   return (
@@ -38,22 +61,7 @@ export default function InstagramSection() {
 
         <div className="mt-16 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:gap-8">
           {GALLERY.map((g, i) => (
-            <Reveal key={g.src} delay={(i % 3) * 0.08}>
-              <a
-                href={SITE.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block overflow-hidden rounded-xl"
-                aria-label={`Instagram'da görüntüle: ${g.caption}`}
-              >
-                <img
-                  src={g.src}
-                  alt={g.alt}
-                  loading="lazy"
-                  className="aspect-square w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-              </a>
-            </Reveal>
+            <InstagramTile key={g.src} g={g} index={i} />
           ))}
         </div>
       </div>

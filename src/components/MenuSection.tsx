@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { MENU, SITE } from '../data/site';
+import { GALLERY, MEDIA_SLOTS, MENU, SITE } from '../data/site';
+import { useMedia } from '../lib/media';
 import Reveal from './Reveal';
 
 const gridV = { show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } } };
@@ -8,6 +9,22 @@ const cardV = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 1] as const } },
 };
+
+const POOL = GALLERY.map((g) => g.src);
+
+function MenuThumb({ real, index }: { real: string; index: number }) {
+  const fallback = POOL[index % POOL.length];
+  const src = useMedia([real], fallback);
+  return (
+    <img
+      src={src}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      className="h-16 w-16 flex-none rounded-xl border border-white/10 object-cover sm:h-20 sm:w-20"
+    />
+  );
+}
 
 export default function MenuSection() {
   const [cat, setCat] = useState(MENU[0].id);
@@ -60,20 +77,23 @@ export default function MenuSection() {
           animate="show"
           className="mx-auto mt-14 grid max-w-5xl gap-x-20 gap-y-1 sm:grid-cols-2"
         >
-          {active.items.map((it) => (
+          {active.items.map((it, i) => (
             <motion.li key={it.name} variants={cardV}>
-              <div className="group py-5">
-                <div className="flex items-baseline gap-4">
-                  {it.badge && (
-                    <span className="shrink-0 text-[9px] font-bold uppercase tracking-[0.2em] text-[#e8b45a]">{it.badge}</span>
-                  )}
-                  <h3 className="font-display text-[19px] leading-snug text-cream transition-colors duration-300 group-hover:text-[#e8b45a]">
-                    {it.name}
-                  </h3>
-                  <span aria-hidden="true" className="mx-1 flex-1 border-b border-dotted border-white/15" />
-                  <span className="whitespace-nowrap font-display text-[17px] text-cream2">{it.price}</span>
+              <div className="group flex gap-5 py-5">
+                <MenuThumb real={MEDIA_SLOTS.menu[active.id]} index={i} />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-baseline gap-4">
+                    {it.badge && (
+                      <span className="shrink-0 text-[9px] font-bold uppercase tracking-[0.2em] text-[#e8b45a]">{it.badge}</span>
+                    )}
+                    <h3 className="font-display text-[19px] leading-snug text-cream transition-colors duration-300 group-hover:text-[#e8b45a]">
+                      {it.name}
+                    </h3>
+                    <span aria-hidden="true" className="mx-1 flex-1 border-b border-dotted border-white/15" />
+                    <span className="whitespace-nowrap font-display text-[17px] text-cream2">{it.price}</span>
+                  </div>
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{it.desc}</p>
                 </div>
-                <p className="mt-1.5 pl-1 text-[13px] leading-relaxed text-muted">{it.desc}</p>
               </div>
             </motion.li>
           ))}

@@ -2,7 +2,52 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Expand, X } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import { GALLERY } from '../data/site';
+import { useMedia } from '../lib/media';
 import Reveal from './Reveal';
+
+function GalleryItem({
+  g,
+  index,
+  onOpen,
+}: {
+  g: (typeof GALLERY)[number];
+  index: number;
+  onOpen: () => void;
+}) {
+  const src = useMedia([g.real], g.src);
+  return (
+    <Reveal
+      delay={(index % 3) * 0.08}
+      className={index === 0 || index === 3 ? 'md:col-span-1' : undefined}
+    >
+      <button
+        onClick={onOpen}
+        className="group relative block w-full overflow-hidden rounded-xl border border-white/10"
+        aria-label={`Görseli büyüt: ${g.caption}`}
+      >
+        <img
+          src={src}
+          alt={g.alt}
+          loading="lazy"
+          className={`w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${index % 3 === 1 ? 'aspect-square md:aspect-[3/4]' : 'aspect-square'}`}
+        />
+        <span className="absolute inset-0 bg-gradient-to-t from-coal/70 via-transparent to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100" />
+        <span
+          className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2 text-left opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100"
+          style={{ transform: 'translateY(8px)' }}
+        >
+          <span className="text-[12.5px] font-medium leading-snug text-cream">{g.caption}</span>
+          <Expand className="h-4 w-4 flex-none text-[#e8b45a]" />
+        </span>
+      </button>
+    </Reveal>
+  );
+}
+
+function LightboxImage({ g }: { g: (typeof GALLERY)[number] }) {
+  const src = useMedia([g.real], g.src);
+  return <img src={src} alt={g.alt} className="max-h-[70vh] w-auto rounded-2xl object-contain shadow-card" />;
+}
 
 export default function Gallery() {
   const [index, setIndex] = useState<number | null>(null);
@@ -51,29 +96,7 @@ export default function Gallery() {
 
         <div className="mt-16 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:gap-8">
           {GALLERY.map((g, i) => (
-            <Reveal
-              key={g.src}
-              delay={(i % 3) * 0.08}
-              className={i === 0 || i === 3 ? 'md:col-span-1' : undefined}
-            >
-              <button
-                onClick={() => setIndex(i)}
-                className="group relative block w-full overflow-hidden rounded-xl border border-white/10"
-                aria-label={`Görseli büyüt: ${g.caption}`}
-              >
-                <img
-                  src={g.src}
-                  alt={g.alt}
-                  loading="lazy"
-                  className={`w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${i % 3 === 1 ? 'aspect-square md:aspect-[3/4]' : 'aspect-square'}`}
-                />
-                <span className="absolute inset-0 bg-gradient-to-t from-coal/70 via-transparent to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100" />
-                <span className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2 text-left opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100" style={{ transform: 'translateY(8px)' }}>
-                  <span className="text-[12.5px] font-medium leading-snug text-cream">{g.caption}</span>
-                  <Expand className="h-4 w-4 flex-none text-[#e8b45a]" />
-                </span>
-              </button>
-            </Reveal>
+            <GalleryItem key={g.src} g={g} index={i} onOpen={() => setIndex(i)} />
           ))}
         </div>
       </div>
@@ -127,11 +150,7 @@ export default function Gallery() {
               className="max-h-[82vh] max-w-4xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={GALLERY[index].src}
-                alt={GALLERY[index].alt}
-                className="max-h-[70vh] w-auto rounded-2xl object-contain shadow-card"
-              />
+              <LightboxImage g={GALLERY[index]} />
               <figcaption className="mt-4 text-center">
                 <p className="text-[15px] text-cream">{GALLERY[index].caption}</p>
                 <p className="mt-1 text-[12px] tracking-[0.2em] text-muted">

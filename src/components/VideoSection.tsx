@@ -1,28 +1,42 @@
 import { useEffect, useState } from 'react';
-import { VIDEOS } from '../data/site';
+import { MEDIA_SLOTS, VIDEOS } from '../data/site';
 import Reveal from './Reveal';
 
-function useVideoAvailable(src: string): boolean {
-  const [ok, setOk] = useState(false);
+const CANDIDATES = MEDIA_SLOTS.video;
+
+function useFirstAvailable(candidates: readonly string[]): string {
+  const [src, setSrc] = useState('');
+  const key = candidates.join('|');
   useEffect(() => {
     let live = true;
-    fetch(src, { method: 'HEAD' })
-      .then((r) => {
-        if (live && r.ok) setOk(true);
-      })
-      .catch(() => undefined);
+    const check = async () => {
+      for (const c of candidates) {
+        try {
+          const r = await fetch(c, { method: 'HEAD' });
+          const ct = r.headers.get('content-type') || '';
+          if (live && r.ok && (ct.startsWith('video/') || ct.startsWith('application/octet-stream'))) {
+            setSrc(c);
+            return;
+          }
+        } catch {
+          /* devam */
+        }
+      }
+    };
+    check();
     return () => {
       live = false;
     };
-  }, [src]);
-  return ok;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+  return src;
 }
 
 export default function VideoSection() {
   const video = VIDEOS[0];
-  const available = useVideoAvailable(video.src);
+  const src = useFirstAvailable(CANDIDATES);
 
-  if (!available) return null;
+  if (!src) return null;
 
   return (
     <section className="bg-coal py-28 lg:py-40" aria-label="Video">
@@ -46,7 +60,7 @@ export default function VideoSection() {
         <Reveal delay={0.15}>
           <div className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-2xl border border-white/10 shadow-card">
             <video
-              src={video.src}
+              src={src}
               poster={video.poster}
               autoPlay
               muted

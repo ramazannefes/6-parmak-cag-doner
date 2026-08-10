@@ -93,16 +93,30 @@ export const MENU: MenuCategory[] = [
 ] as const;
 
 export const GALLERY = [
-  { src: '/images/food/cag-doner.jpg', alt: 'Odun ateşinde dönen cağ döner', caption: 'Odun ateşinde pişen lezzet' },
-  { src: '/images/food/cag-doner-slicing.jpg', alt: 'Cağ döner ustanın eliyle dilimlenirken', caption: 'Ustanın elinden, tam zamanında' },
-  { src: '/images/food/skewers.jpg', alt: 'Köz üzerinde ızgara şişler', caption: 'Köz üzerinde ızgara' },
-  { src: '/images/food/service.jpg', alt: 'Servise hazır ızgara tabağı', caption: 'Sofranız için atölyede hazırlık' },
-  { src: '/images/food/warm-service.jpg', alt: 'Sıcak servis edilen lezzetler', caption: 'Sıcak servis, güler yüz' },
-  { src: '/images/food/meze.jpg', alt: 'Taze hazırlanmış mezeler', caption: 'Mezeler hazır, tabaklar bekliyor' },
+  { src: '/images/food/cag-doner.jpg', real: '/images/instagram/gallery-01.jpg', alt: 'Odun ateşinde dönen cağ döner', caption: 'Odun ateşinde pişen lezzet' },
+  { src: '/images/food/cag-doner-slicing.jpg', real: '/images/instagram/gallery-02.jpg', alt: 'Cağ döner ustanın eliyle dilimlenirken', caption: 'Ustanın elinden, tam zamanında' },
+  { src: '/images/food/skewers.jpg', real: '/images/instagram/gallery-03.jpg', alt: 'Köz üzerinde ızgara şişler', caption: 'Köz üzerinde ızgara' },
+  { src: '/images/food/service.jpg', real: '/images/instagram/gallery-04.jpg', alt: 'Servise hazır ızgara tabağı', caption: 'Sofranız için atölyede hazırlık' },
+  { src: '/images/food/warm-service.jpg', real: '/images/instagram/gallery-05.jpg', alt: 'Sıcak servis edilen lezzetler', caption: 'Sıcak servis, güler yüz' },
+  { src: '/images/food/meze.jpg', real: '/images/instagram/gallery-06.jpg', alt: 'Taze hazırlanmış mezeler', caption: 'Mezeler hazır, tabaklar bekliyor' },
 ] as const;
 
+// Gerçek 6 Parmak medyası yokken bile site çalışır:
+// `real` yuvalarına gerçek dosya bırakılırsa site otomatik olarak
+// placeholder'lar yerine gerçek medyayı gösterir (kod değişikliği gerekmez).
+export const MEDIA_SLOTS = {
+  hero: '/images/instagram/hero.jpg',
+  menu: {
+    doner: '/images/instagram/menu-doner.jpg',
+    kebap: '/images/instagram/menu-kebap.jpg',
+    meze: '/images/instagram/menu-meze.jpg',
+    tatli: '/images/instagram/menu-tatli.jpg',
+  } as Record<string, string>,
+  video: ['/videos/instagram/hero-reel.mp4', '/videos/instagram/cooking.mp4', '/videos/hero-doner.mp4'],
+} as const;
+
 // Gerçek marka videosu yoksa VideoSection otomatik olarak görünmez.
-// public/videos/hero-doner.mp4 dosyasını buraya bırakın — bölüm otomatik aktifleşir.
+// public/videos/ altına gerçek video bırakın — bölüm otomatik aktifleşir.
 export const VIDEOS = [
   { src: '/videos/hero-doner.mp4', poster: '/images/food/cag-doner.jpg', title: 'Ateşin Başından' },
 ] as const;

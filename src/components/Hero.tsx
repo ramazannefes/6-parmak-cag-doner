@@ -1,6 +1,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, Navigation, Phone, Star } from 'lucide-react';
-import { SITE } from '../data/site';
+import { MEDIA_SLOTS, SITE } from '../data/site';
+import { useMedia } from '../lib/media';
 import Embers from './Embers';
 import Rotisserie from './Rotisserie';
 
@@ -23,6 +24,7 @@ const STATS = [
 
 export default function Hero({ started }: { started: boolean }) {
   const reduce = useReducedMotion();
+  const heroPhoto = useMedia([MEDIA_SLOTS.hero], '');
   const { scrollY } = useScroll();
   const parallaxY = useTransform(scrollY, [0, 800], [0, 120]);
   const fade = useTransform(scrollY, [0, 620], [1, 0]);
@@ -31,7 +33,7 @@ export default function Hero({ started }: { started: boolean }) {
   return (
     <section id="anasayfa" className="relative flex min-h-[100svh] items-center overflow-hidden pt-32 lg:pt-40">
       {/* quiet ambient */}
-      <div className="absolute inset-0 bg-[radial-gradient(1000px_520px_at_78%_12%,rgba(255,106,0,0.07),transparent_60%),radial-gradient(800px_480px_at_12%_92%,rgba(224,67,30,0.05),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(1000px_520px_at_78%_12%,rgba(255,106,0,0.05),transparent_60%),radial-gradient(800px_480px_at_12%_92%,rgba(224,67,30,0.04),transparent_60%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-coal to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-coal to-transparent" />
 
@@ -105,8 +107,19 @@ export default function Hero({ started }: { started: boolean }) {
           animate={started ? { opacity: 1, scale: 1 } : undefined}
           transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Rotisserie />
-          <Embers density={1} className="!inset-x-8 !bottom-0 !top-auto h-[40%]" />
+          {heroPhoto ? (
+            <img
+              src={heroPhoto}
+              alt="6 Parmak Cağ Döner — gerçek ürün görseli"
+              loading="lazy"
+              className="aspect-[4/5] w-full rounded-2xl border border-white/10 object-cover"
+            />
+          ) : (
+            <>
+              <Rotisserie />
+              <Embers density={0.8} className="!inset-x-8 !bottom-0 !top-auto h-[40%]" />
+            </>
+          )}
         </motion.div>
       </div>
 

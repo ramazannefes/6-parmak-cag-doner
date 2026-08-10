@@ -80,8 +80,8 @@ export default function Rotisserie() {
             <stop offset="100%" stopColor="rgba(255,244,224,0)" />
           </linearGradient>
           <radialGradient id="fireGlowGrad" cx="0.5" cy="0.5" r="0.5">
-            <stop offset="0%" stopColor="rgba(255,106,0,0.65)" />
-            <stop offset="55%" stopColor="rgba(255,106,0,0.28)" />
+            <stop offset="0%" stopColor="rgba(255,106,0,0.5)" />
+            <stop offset="55%" stopColor="rgba(255,106,0,0.18)" />
             <stop offset="100%" stopColor="rgba(255,106,0,0)" />
           </radialGradient>
           <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
