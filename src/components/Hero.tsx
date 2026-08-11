@@ -1,5 +1,5 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, Navigation, Phone, Star } from 'lucide-react';
+import { ChevronDown, Navigation, Phone } from 'lucide-react';
 import { SITE } from '../data/site';
 
 const container = {
@@ -58,10 +58,6 @@ export default function Hero({ started }: { started: boolean }) {
                 className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] font-semibold uppercase tracking-[0.32em] text-cream2/80"
               >
                 Bursa · Osmangazi
-                <span className="inline-flex items-center gap-1.5 text-gold">
-                  <Star className="h-3.5 w-3.5 fill-current" />
-                  4.9 · 3.888 yorum
-                </span>
               </motion.p>
 
               <motion.h1

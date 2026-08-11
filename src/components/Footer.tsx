@@ -98,10 +98,6 @@ export default function Footer() {
                 <b className="font-semibold text-cream2">12:00 – 19:00</b>
               </p>
             </div>
-            <div className="mt-5">
-              <p className="font-display text-[28px] font-medium leading-none text-cream">4.9 ★</p>
-              <p className="mt-2 text-[12px] text-muted">3.888 Google yorumu</p>
-            </div>
           </div>
         </div>
 

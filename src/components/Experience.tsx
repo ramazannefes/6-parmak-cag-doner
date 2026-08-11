@@ -6,7 +6,6 @@ const FEATURES = [
   { t: 'Odun Ateşi', s: 'Meşe korunda pişen lezzet' },
   { t: 'Usta Eli', s: 'Ateşi ve eti tanıyan eller' },
   { t: 'Günlük Taze Kesim', s: 'Her sabah yeni et' },
-  { t: '4.9 ★ Google', s: '3.888 mutlu misafir' },
 ];
 
 export default function Experience() {
@@ -55,10 +54,6 @@ export default function Experience() {
               decoding="async"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-coal/60 via-transparent to-transparent" />
-            <div className="absolute bottom-6 left-6">
-              <p className="font-display text-4xl font-medium text-cream">4.9 ★</p>
-              <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-cream2/70">3.888 Google yorumu</p>
-            </div>
           </div>
         </Reveal>
 
