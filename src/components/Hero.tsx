@@ -1,6 +1,7 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, Navigation, Phone } from 'lucide-react';
-import { SITE } from '../data/site';
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ChevronDown, MapPin, Navigation, Phone } from 'lucide-react';
+import { useState } from 'react';
+import { BRANCHES } from '../data/site';
 
 const container = {
   hidden: {},
@@ -17,17 +18,23 @@ const itemFade = {
   show: { opacity: 1, transition: { duration: 1.1, ease: 'easeOut' as const } },
 };
 
-const STATS = [
-  { v: '11:00', l: 'Açılış' },
-  { v: '20:00', l: 'Kapanış' },
-  { v: '%100', l: 'Odun Ateşi' },
-  { v: '₺200–400', l: 'Kişi Başı' },
+type StatDef =
+  | { key: string; l: string; v: string }
+  | { key: string; l: string; dynamic: 'open' | 'close' };
+
+const STATS: StatDef[] = [
+  { key: 'open', l: 'Açılış', dynamic: 'open' },
+  { key: 'close', l: 'Kapanış', dynamic: 'close' },
+  { key: 'wood', v: '%100', l: 'Odun Ateşi' },
+  { key: 'price', v: '₺200–400', l: 'Kişi Başı' },
 ];
 
 const HERO_VIDEO = '/videos/hero-doner.mp4';
 
 export default function Hero({ started }: { started: boolean }) {
   const reduce = useReducedMotion();
+  const [branchId, setBranchId] = useState(BRANCHES[0].id);
+  const branch = BRANCHES.find((b) => b.id === branchId) ?? BRANCHES[0];
   const { scrollY } = useScroll();
   const textY = useTransform(scrollY, [0, 900], [0, 90]);
   const fade = useTransform(scrollY, [0, 700], [1, 0]);
@@ -53,12 +60,42 @@ export default function Hero({ started }: { started: boolean }) {
               initial={reduce ? undefined : 'hidden'}
               animate={started ? 'show' : undefined}
             >
-              <motion.p
-                variants={item}
-                className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] font-semibold uppercase tracking-[0.32em] text-cream2/80"
-              >
-                Bursa · Osmangazi
-              </motion.p>
+              <motion.div variants={item} className="flex flex-col items-start gap-3">
+                <div
+                  role="tablist"
+                  aria-label="Şube seçimi"
+                  className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-coal2/70 p-1 backdrop-blur-sm"
+                >
+                  {BRANCHES.map((b) => (
+                    <button
+                      key={b.id}
+                      role="tab"
+                      aria-selected={b.id === branchId}
+                      onClick={() => setBranchId(b.id)}
+                      className={`rounded-full px-4 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.26em] transition-all duration-300 ${
+                        b.id === branchId
+                          ? 'bg-[#e8b45a] text-coal shadow-[0_0_20px_rgba(232,180,90,0.3)]'
+                          : 'text-cream2/70 hover:text-cream'
+                      }`}
+                    >
+                      {b.label}
+                    </button>
+                  ))}
+                </div>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.p
+                    key={branch.id}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                    className="flex items-center gap-1.5 text-[12.5px] text-cream2/75"
+                  >
+                    <MapPin className="h-3.5 w-3.5 flex-none text-[#e8b45a]" strokeWidth={1.8} />
+                    {branch.addressShort}
+                  </motion.p>
+                </AnimatePresence>
+              </motion.div>
 
               <motion.h1
                 variants={item}
@@ -80,12 +117,12 @@ export default function Hero({ started }: { started: boolean }) {
                 <a href="#menu" className="btn btn--fire px-8 py-4 text-[13px] uppercase tracking-[0.18em]">
                   Menüyü Keşfet
                 </a>
-                <a href={`tel:${SITE.phoneTel}`} className="btn btn--line px-7 py-4 text-[13px]">
+                <a href={`tel:${branch.phoneTel}`} className="btn btn--line px-7 py-4 text-[13px]">
                   <Phone className="h-4 w-4 text-[#e8b45a]" />
                   Telefonla Ara
                 </a>
                 <a
-                  href={SITE.mapsDirections}
+                  href={branch.mapsDirections}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn--ghost px-7 py-4 text-[13px]"
@@ -98,8 +135,25 @@ export default function Hero({ started }: { started: boolean }) {
               {/* stats — editorial hairline row */}
               <motion.div variants={itemFade} className="mt-14 flex max-w-xl flex-wrap items-center gap-x-10 gap-y-6">
                 {STATS.map((s, i) => (
-                  <div key={s.l} className={i > 0 ? 'lg:border-l lg:border-white/10 lg:pl-10' : undefined}>
-                    <p className="font-display text-[26px] font-medium leading-none text-cream">{s.v}</p>
+                  <div key={s.key} className={i > 0 ? 'lg:border-l lg:border-white/10 lg:pl-10' : undefined}>
+                    <p className="font-display text-[26px] font-medium leading-none text-cream">
+                      {'dynamic' in s ? (
+                        <AnimatePresence mode="wait" initial={false}>
+                          <motion.span
+                            key={branch.id}
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -8 }}
+                            transition={{ duration: 0.3, ease: 'easeOut' }}
+                            className="inline-block"
+                          >
+                            {s.dynamic === 'open' ? branch.openTime : branch.closeTime}
+                          </motion.span>
+                        </AnimatePresence>
+                      ) : (
+                        s.v
+                      )}
+                    </p>
                     <p className="mt-2 text-[10.5px] uppercase tracking-[0.22em] text-muted">{s.l}</p>
                   </div>
                 ))}

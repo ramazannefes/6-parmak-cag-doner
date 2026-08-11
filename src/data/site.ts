@@ -37,6 +37,64 @@ export const SITE = {
     'https://www.google.com/maps/search/?api=1&query=Kuru%C3%A7e%C5%9Fme+Sakarya+Cd.+No%3A11+Osmangazi+Bursa',
 } as const;
 
+export type Branch = {
+  id: string;
+  label: string;
+  area: string;
+  address: string;
+  addressShort: string;
+  phoneDisplay: string;
+  phoneTel: string;
+  whatsapp: string;
+  openTime: string;
+  closeTime: string;
+  hoursNote: string;
+  mapsEmbed: string;
+  mapsDirections: string;
+  mapsSearch: string;
+};
+
+export const BRANCHES: Branch[] = [
+  {
+    id: 'osmangazi',
+    label: 'OSMANGAZİ',
+    area: 'Bursa · Osmangazi',
+    address: 'Kuruçeşme, Sakarya Cd. No:11, 16050 Osmangazi/Bursa',
+    addressShort: 'Kuruçeşme, Sakarya Cd. No:11 · Osmangazi',
+    phoneDisplay: '0501 107 62 16',
+    phoneTel: '+905011076216',
+    whatsapp: '905011076216',
+    openTime: '11:00',
+    closeTime: '20:00',
+    hoursNote: 'Pzt – Cmt 11:00 – 20:00 · Pazar 12:00 – 19:00',
+    mapsEmbed:
+      'https://www.google.com/maps?q=Kuru%C3%A7e%C5%9Fme%2C%20Sakarya%20Cd.%20No%3A11%2C%20Osmangazi%2C%20Bursa&z=16&output=embed',
+    mapsDirections:
+      'https://www.google.com/maps/dir/?api=1&destination=Kuru%C3%A7e%C5%9Fme%2C+Sakarya+Cd.+No%3A11%2C+Osmangazi%2C+Bursa',
+    mapsSearch:
+      'https://www.google.com/maps/search/?api=1&query=Kuru%C3%A7e%C5%9Fme+Sakarya+Cd.+No%3A11+Osmangazi+Bursa',
+  },
+  {
+    id: 'guzelyali',
+    label: 'GÜZELYALI',
+    area: 'Bursa · Mudanya (Güzelyalı)',
+    address: 'İDO Seyhanlar Karşısı, Güzelyalı Eğitim, Burgaz Cd 7 Sk No:1 D:G, 16940 Mudanya/Bursa',
+    addressShort: 'İDO Seyhanlar Karşısı, Burgaz Cd 7 Sk No:1 · Güzelyalı',
+    phoneDisplay: '0547 600 16 16',
+    phoneTel: '+905476001616',
+    whatsapp: '905476001616',
+    openTime: '11:30',
+    closeTime: '20:00',
+    hoursNote: 'Her gün 11:30 – 20:00',
+    mapsEmbed:
+      'https://www.google.com/maps?q=G%C3%BCzelyal%C4%B1%2C%20Burgaz%20Cd%207%20Sk%20No%3A1%2C%20Mudanya%2C%20Bursa&z=16&output=embed',
+    mapsDirections:
+      'https://maps.google.com/maps?vet=10CAAQoqAOahcKEwigy8Wns5eWAxUAAAAAHQAAAAAQGA..i&sca_esv=0de6211b86b931bd&udm=1&fvr=1',
+    mapsSearch:
+      'https://www.google.com/maps/search/?api=1&query=G%C3%BCzelyal%C4%B1+Burgaz+Cd.+7+Sk.+No%3A1+Mudanya+Bursa',
+  },
+];
+
 export const HOURS = [
   { day: 'Pazartesi', time: '11:00 – 20:00' },
   { day: 'Salı', time: '11:00 – 20:00' },
